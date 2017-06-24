@@ -15,9 +15,10 @@ namespace WritingToFile1
             String myLine;
 
             //How to write to a file. When writing to a file, if the file does not exist, the program creates it.
-            FileStream fs = new FileStream("/home/alex/Temp/output.txt", FileMode.Create); // FileMode.Create overwites an existing file
-            TextWriter tw = new StreamWriter(fs);
-
+            FileStream fs = new FileStream("/home/alex/Temp/output.txt", FileMode.Create,FileAccess.Write, FileShare.ReadWrite); // FileMode.Create overwites an existing file
+            System.IO.TextWriter tw = new System.IO.StreamWriter(fs);
+            StreamWriter sw = new StreamWriter(fs);
+            
             for (int i=0; i < 3; i++) // read from the screen three lines and write them to a file
             {
                 Console.WriteLine("Enter a line");
@@ -25,6 +26,7 @@ namespace WritingToFile1
                 tw.WriteLine(myLine); // Write the line to the file
             } // end of writing to the file
             tw.Flush(); //flush the file! If you do not flush the file, it will not be written. tw.Close() does not exist anymore.
+            tw.Dispose(); // How to close a TextWriter file in netcoreapp1.1
             FileStream fr = new FileStream("/home/alex/Temp/output.txt", FileMode.Open, FileAccess.Read);
             TextReader tr = new StreamReader(fr);
             Console.WriteLine("Reading from the file output.txt");

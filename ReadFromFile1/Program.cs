@@ -23,20 +23,28 @@ namespace ReadFromFile1
                     Tom Cruise 196 7 3
              */
              // The task of this program is to read the file line by line
-             TextReader tr = new StreamReader(new FileStream("/home/alex/Temp/data.txt", FileMode.Open, FileAccess.Read)); // Make sure you added "using System.IO"
-             while ((myLine = tr.ReadLine()) != null)
+             try
              {
-                 words = myLine.Split(' '); 
-                 String firstName = words[0];
-                 String lastName = words[1];
-                 int year = int.Parse(words[2]);
-                 int month = int.Parse(words[3]);
-                 int day = int.Parse(words[4]);
-                 Console.WriteLine(firstName + " " + lastName + " "
-                                    + year+"/"+month+"/"+day);
-                 Console.WriteLine("Press a key for next entry ...");
-                 Console.ReadKey();
-             } //end of reading the file
+                TextReader tr = new StreamReader(new FileStream("/home/alex/Temp/data.txt", FileMode.Open, FileAccess.Read)); // Make sure you added "using System.IO"
+                
+                while ((myLine = tr.ReadLine()) != null)
+                {
+                    words = myLine.Split(' '); 
+                    String firstName = words[0];
+                    String lastName = words[1];
+                    int year = int.Parse(words[2]);
+                    int month = int.Parse(words[3]);
+                    int day = int.Parse(words[4]);
+                    Console.WriteLine(firstName + " " + lastName + " "
+                                        + year+"/"+month+"/"+day);
+                    Console.WriteLine("Press a key for next entry ...");
+                    Console.ReadKey();
+                } //end of reading the file
+             }
+             catch (FileNotFoundException e)
+             {
+                Console.WriteLine(e.Message);
+             }
              Console.WriteLine("End of file. Press any key to continue ...");
              Console.ReadKey();
              return;

@@ -12,12 +12,8 @@ namespace AddingAClass2
         static void Main(string[] args)
         {
             Console.WriteLine("Hi, welcome to the netcore version of adding a class");
-            FileStream fs = new FileStream("/home/alex/Temp/data4.txt", FileMode.Create,FileAccess.Write, FileShare.ReadWrite);
-            TextWriter tw = new StreamWriter(fs);
-            tw.WriteLine("Testing");
-            tw.Flush();
-            tw.Close();
-            fs.Close();
+            Person p = new Person("John", "Key", "9-August-1961", 111); // Creating the first object
+            Person q = p;
             Console.WriteLine("Press any key to continue ....");
             Console.ReadKey();
         }

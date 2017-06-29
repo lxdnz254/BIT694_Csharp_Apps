@@ -12,8 +12,8 @@ namespace Assignment1
 		private String lastName;
 		private String dob; //date of birth
 		private int accountID; // bank account ID
-		private double balance; // bank account balance
-		private int activityCounter; // keeps count of transactions
+		protected double balance; // bank account balance
+		protected int activityCounter; // keeps count of transactions
 
 		public Customer (String firstName, String lastName, String dob, int id, double balance)
 		{
@@ -32,8 +32,8 @@ namespace Assignment1
 			if (bal < 0) {
 				Console.WriteLine (" Transaction Cancelled! \n The deposit is not enough to cover the transaction fee");
 			} else {
-				AccessActivityCounter++;
-				AccessBalance = bal;
+				activityCounter++;
+				balance = bal;
 			}
 		}
 
@@ -44,9 +44,19 @@ namespace Assignment1
 			if (bal < 0) {
 				Console.WriteLine (" Transaction Cancelled!\n Not enough money in account to make withdrawl");
 			} else {
-				AccessActivityCounter++;
-				AccessBalance = bal;
+				activityCounter++;
+				balance = bal;
 			}
+		}
+
+		public virtual void displayInfo()
+		{
+			String format = "{0,-15} {1}";
+			Console.WriteLine (String.Format(format, "ID:", accountID));
+			Console.WriteLine (String.Format(format, "Name:", firstName + " " + lastName));
+			// Format date of birth .. a helper method here could be useful!
+			Console.WriteLine (String.Format(format, "Birth Date:", DateUtilities.dateFormat(dob)));
+			Console.WriteLine (String.Format(format, "Balance:", String.Format ("{0:C}", balance)));
 		}
 
 		public double AccessBalance {
@@ -57,6 +67,18 @@ namespace Assignment1
 		public int AccessActivityCounter {
 			set { this.activityCounter = value; }
 			get { return this.activityCounter; }
+		}
+
+		public String AccessDob {
+			get { return this.dob; }
+				}
+
+		public int AccessID {
+			get { return this.accountID; }
+		}
+
+		public String AccessFullName {
+			get { return this.firstName + " " + this.lastName; }
 		}
 	}
 }

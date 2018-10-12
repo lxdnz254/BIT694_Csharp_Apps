@@ -50,7 +50,7 @@ namespace Assignment1
 				return false;
 			} else {
 				// There mus be something else wrong with the date format
-				Console.WriteLine ("Error trying to parse date: " + rDate);
+				Console.WriteLine ("Error in isLeapYear trying to parse date: " + rDate);
 				return false;
 			}
 		}

@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 
 namespace Assignment1
 {
-	public static class DateUtilities
+    public static class DateUtilities
 	{
 		static String dateRegEx(String date)
 		{
